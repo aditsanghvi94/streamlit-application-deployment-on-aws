@@ -1,10 +1,12 @@
 .DS_Store
 data/*
+script/data/*
 !data/.gitkeep
 .ipynb_checkpoints
 __pycache__/
 tags
-
+.idea*
+script/Untitled*
 # VS CODE 
 .vscode/*
 !.vscode/settings.json

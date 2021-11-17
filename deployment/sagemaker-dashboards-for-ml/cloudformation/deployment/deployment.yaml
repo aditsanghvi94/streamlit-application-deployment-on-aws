@@ -239,7 +239,7 @@ Resources:
     Type: AWS::ElasticLoadBalancingV2::Listener
     Properties:
       Certificates:
-        - - CertificateArn: "arn:aws:acm:us-east-1:037440092371:certificate/b78e6182-6f09-4828-a6c0-feb2ccb9e6dd"
+         - CertificateArn: "arn:aws:acm:us-east-1:037440092371:certificate/b78e6182-6f09-4828-a6c0-feb2ccb9e6dd"
       DefaultActions: !If
         - AddCognitoAuthentication
         - - Order: 1
@@ -258,6 +258,12 @@ Resources:
       Port: 443
       Protocol: "HTTPS"
       SslPolicy: "ELBSecurityPolicy-TLS-1-2-2017-01"
+  AdditionalListenerCertificates:
+    Type: AWS::ElasticLoadBalancingV2::ListenerCertificate
+    Properties:
+      ListenerArn: !Ref LoadBalancerHTTPSListener
+      Certificates:
+        - CertificateArn:  "arn:aws:acm:us-east-1:037440092371:certificate/b78e6182-6f09-4828-a6c0-feb2ccb9e6dd"
   LoadBalancerHTTPListener:
     Type: AWS::ElasticLoadBalancingV2::Listener
     Properties:
