@@ -1,5 +1,5 @@
 #!/bin/bash
-
+pip install yfinance --upgrade --no-cache-dir
 stack_name=streamlit-dashboard
 
 # Default aws region
