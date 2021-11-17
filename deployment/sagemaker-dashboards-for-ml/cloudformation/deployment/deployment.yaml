@@ -10,7 +10,7 @@ Parameters:
     Default: ""
   ApplicationLoadBalancerSSLCertificate:
     Type: String
-    Default: ""
+    Default: "arn:aws:acm:us-east-1:037440092371:certificate/b78e6182-6f09-4828-a6c0-feb2ccb9e6dd"
   ApplicationLoadBalancerCIDRWhitelist:
     Type: String
     Default: "0.0.0.0/0"
@@ -238,10 +238,8 @@ Resources:
   LoadBalancerHTTPSListener:
     Type: AWS::ElasticLoadBalancingV2::Listener
     Properties:
-      Certificates: !If
-        - UseSelfSignedSSLCertificate
-        - - CertificateArn: !GetAtt SelfSignedCertificateStack.Outputs.SelfSignedSSLCertificate
-        - - CertificateArn: !Ref ApplicationLoadBalancerSSLCertificate
+      Certificates:
+        - - CertificateArn: "arn:aws:acm:us-east-1:037440092371:certificate/b78e6182-6f09-4828-a6c0-feb2ccb9e6dd"
       DefaultActions: !If
         - AddCognitoAuthentication
         - - Order: 1
